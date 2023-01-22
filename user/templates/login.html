@@ -1,0 +1,59 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+    {% block title %}
+    <title>Giriş Yap  >>>  {{setting.company}}</title>
+    {% endblock title %}
+
+    {% block head %}
+    <link rel="shortcut icon" type="image/x-icon" href="{{setting.icon.url}}">
+    {% endblock head %}
+
+    <!-- Topbar Start -->
+    {% include 'includes/_topbar.html' %}
+    
+
+    <!-- Topbar End -->
+    {% block content %}
+    {% include 'includes/_navbar.html' %}
+
+    <!-- Breadcrumb Start -->
+    <div class="container-fluid">
+        <div class="row px-xl-5">
+            <div class="col-12">
+                <nav class="breadcrumb bg-light mb-30">
+                    <a class="breadcrumb-item text-dark" href="{% url 'index' %}">Anasayfa</a>
+                    <span class="breadcrumb-item active">Giriş Yap</span>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                {% include 'includes/__messages.html' %}
+                <form class="control-group" method="POST">
+                    {% csrf_token %}
+                    {{form | crispy}}
+                
+                    <input class="btn btn-primary py-2 px-4 mt-3" type="submit" id="sendMessageButton" value="Giriş" >
+                </form>
+                
+                <div class="mt-3">
+                    <a class="mt-3" href="{% url 'password_reset' %}"><i>Şifrenizi mi unuttunuz?</i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+      <!-- Footer Start -->
+      {% include 'includes/_footer.html' %}
+      <!-- Footer End -->
+  
+      {% endblock content %}

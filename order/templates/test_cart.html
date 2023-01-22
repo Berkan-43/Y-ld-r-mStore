@@ -1,0 +1,114 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+    {% block title %}
+    <title>Test Kartları  >>>  {{setting.company}}</title>
+    {% endblock title %}
+
+    {% block head %}
+    <link rel="shortcut icon" type="image/x-icon" href="{{setting.icon.url}}">
+    {% endblock head %}
+
+    <!-- Topbar Start -->
+    {% include 'includes/_topbar.html' %}
+    <!-- Topbar End -->
+    {% block content %}
+    {% include 'includes/_navbar.html' %}
+
+
+    <!-- Breadcrumb Start -->
+    <div class="container-fluid">
+        <div class="row px-xl-5">
+            <div class="col-12">
+                <nav class="breadcrumb bg-light mb-30">
+                    <a class="breadcrumb-item text-dark" href="{% url 'index' %}">Anasayfa</a>
+                    <span class="breadcrumb-item active">Giriş Yap</span>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <table class="table table-bordered text-center mb-0">
+                    <thead class="bg-secondary text-dark">
+                        <tr>
+                            <th>Örnek Test Kart Numaraları</th>
+                            <th>CVC</th>
+                            <th>Son Geçerlilik tarihi</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody class="align-middle">
+                        
+                        
+                        <tr>
+                            <td class="align-middle">5890040000000016</td> 
+                            <td class="align-middle">123 'Herhangi birşey yazabilirsiniz'</td>
+                            <td class="align-middle">11/26 'Herhangi birşey yazabilirsiniz'</td>
+                        </tr>
+                        <tr>
+                            <td class="align-middle">4766620000000001</td> 
+                            <td class="align-middle">123 'Herhangi birşey yazabilirsiniz'</td>
+                            <td class="align-middle">11/26 'Herhangi birşey yazabilirsiniz'</td>
+                        </tr>
+                        <tr>
+                            <td class="align-middle">5526080000000006</td> 
+                            <td class="align-middle">123 'Herhangi birşey yazabilirsiniz'</td>
+                            <td class="align-middle">11/26 'Herhangi birşey yazabilirsiniz'</td>
+                        </tr>
+                        <tr>
+                            <td class="align-middle">4603450000000000</td> 
+                            <td class="align-middle">123 'Herhangi birşey yazabilirsiniz'</td>
+                            <td class="align-middle">11/26 'Herhangi birşey yazabilirsiniz'</td>
+                        </tr>
+                        <tr>
+                            <td class="align-middle">4987490000000002</td> 
+                            <td class="align-middle">123 'Herhangi birşey yazabilirsiniz'</td>
+                            <td class="align-middle">11/26 'Herhangi birşey yazabilirsiniz'</td>
+                        </tr>
+                        <tr>
+                            <td class="align-middle">5311570000000005</td> 
+                            <td class="align-middle">123 'Herhangi birşey yazabilirsiniz'</td>
+                            <td class="align-middle">11/26 'Herhangi birşey yazabilirsiniz'</td>
+                        </tr>
+                        <tr>
+                            <td class="align-middle">9792020000000001</td> 
+                            <td class="align-middle">123 'Herhangi birşey yazabilirsiniz'</td>
+                            <td class="align-middle">11/26 'Herhangi birşey yazabilirsiniz'</td>
+                        </tr>
+                        <tr>
+                            <td class="align-middle">9792030000000000</td> 
+                            <td class="align-middle">123 'Herhangi birşey yazabilirsiniz'</td>
+                            <td class="align-middle">11/26 'Herhangi birşey yazabilirsiniz'</td>
+                        </tr>
+                        <tr>
+                            <td class="align-middle">5170410000000004</td> 
+                            <td class="align-middle">123 'Herhangi birşey yazabilirsiniz'</td>
+                            <td class="align-middle">11/26 'Herhangi birşey yazabilirsiniz'</td>
+                        </tr>
+                        <tr>
+                            <td class="align-middle">374427000000003	</td> 
+                            <td class="align-middle">123 'Herhangi birşey yazabilirsiniz'</td>
+                            <td class="align-middle">11/26 'Herhangi birşey yazabilirsiniz'</td>
+                        </tr>
+                        <tr>
+                            <td class="align-middle">4475050000000003</td> 
+                            <td class="align-middle">123 'Herhangi birşey yazabilirsiniz'</td>
+                            <td class="align-middle">11/26 'Herhangi birşey yazabilirsiniz'</td>
+                        </tr>
+                        
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+      <!-- Footer Start -->
+      {% include 'includes/_footer.html' %}
+      <!-- Footer End -->
+  
+      {% endblock content %}

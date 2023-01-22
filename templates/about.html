@@ -1,0 +1,45 @@
+{% extends 'index.html' %}
+{% load static %}
+
+
+{% block title %}
+<title>Hakkımızda  >>>  {{setting.company}}</title>
+{% endblock title %}
+
+{% block head %}
+<link rel="shortcut icon" type="image/x-icon" href="{{setting.icon.url}}">
+{% endblock head %}
+
+
+    <!-- Topbar Start -->
+    {% include 'includes/_topbar.html' %}
+    <!-- Topbar End -->
+    {% block content %}
+    {% include 'includes/_navbar.html' %}
+
+        <!-- Breadcrumb Start -->
+        <div class="container-fluid">
+            <div class="row px-xl-5">
+                <div class="col-12">
+                    <nav class="breadcrumb bg-light mb-30">
+                        <a class="breadcrumb-item text-dark" href="{% url 'index' %}">Anasayfa</a>
+                        <span class="breadcrumb-item active">Hakkımızda</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- Breadcrumb End -->
+
+        <div class="section">
+            <div class="container">
+                <div class="row">
+                    {{setting.aboutus|safe}}
+                </div>
+            </div>
+        </div>
+
+     <!-- Footer Start -->
+     {% include 'includes/_footer.html' %}
+     <!-- Footer End -->
+ 
+     {% endblock content %}

@@ -1,0 +1,279 @@
+{% extends 'index.html' %}
+{% load static %}
+
+    {% block title %}
+    <title>Ödeme Yap  >>>  {{setting.company}}</title>
+    {% endblock title %}
+
+    {% block head %}
+    <link rel="shortcut icon" type="image/x-icon" href="{{setting.icon.url}}">
+    {% endblock head %}
+
+    <!-- Tobar Start -->
+    {% include 'includes/_topbar.html' %}
+    <!-- Topbar End -->
+
+
+    {% block content %}
+    <!-- Navbar Start -->
+    {% include 'includes/_navbar.html' %}
+    <!-- Navbar End -->
+
+
+    <!-- Breadcrumb Start -->
+    <div class="container-fluid">
+        <div class="row px-xl-5">
+            <div class="col-12">
+                <nav class="breadcrumb bg-light mb-30">
+                    <a class="breadcrumb-item text-dark" href="{% url 'index' %}">Anasayfa</a>
+                    <a class="breadcrumb-item text-dark" href="#">Mağaza</a>
+                    <span class="breadcrumb-item active">Ödeme</span>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+
+
+    <!-- Checkout Start -->
+    <div class="container-fluid">
+        <div class="row px-xl-5">
+            <div class="col-lg-8">
+                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">FATURA ADRESİ</span></h5>
+                <div class="bg-light p-30 mb-5">
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label>İsim</label>
+                            <input class="form-control" type="text" value="{{user.first_name}}">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Soyisim</label>
+                            <input class="form-control" type="text" value="{{user.last_name}}">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>E-mail</label>
+                            <input class="form-control" type="text" value="{{profile.user.email}}">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Tel No</label>
+                            <input class="form-control" type="text" value="{{profile.phone}}">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Adres Satırı 1</label>
+                            <input class="form-control" type="text" value="{{profile.address}}">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Adres Satırı 2</label>
+                            <input class="form-control" type="text" value="{{profile.address}}">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Ülke</label>
+                            <select class="custom-select">
+                                <option selected>{{profile.country}}</option>
+                                <option>Amerika Birleşik Devletleri</option>
+                                <option>Türkiye</option>
+                                <option>Rusya</option>
+                                <option>İtalya</option>
+                                <option>Irak</option>
+                                <option>Almanya</option>
+                                <option>İngiltere</option>
+                                <option>Çin</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Şehir</label>
+                            <input class="form-control" type="text" value="{{profile.city}}">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Belirtmek / bildirmek istediğiniz birşey var mı?</label>
+                            <input class="form-control" type="text">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>ZIP Code</label>
+                            <input class="form-control" type="text" value="{{zipcode}}">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="newaccount">
+                                <label class="custom-control-label" for="newaccount">Bir hesap oluşturun</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="shipto">
+                                <label class="custom-control-label" for="shipto"  data-toggle="collapse" data-target="#shipping-address">Farklı adrese gönder</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapse mb-5" id="shipping-address">
+                    <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">GÖNDERİ ADRESİ</span></h5>
+                    <div class="bg-light p-30">
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label>İsim</label>
+                                <input class="form-control" type="text" placeholder="John">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Soyisim</label>
+                                <input class="form-control" type="text" placeholder="Doe">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>E-mail</label>
+                                <input class="form-control" type="text" placeholder="example@email.com">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Tel No</label>
+                                <input class="form-control" type="text" placeholder="+123 456 789">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Addres Satırı 1</label>
+                                <input class="form-control" type="text" placeholder="123 Street">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Addres Satırı 2</label>
+                                <input class="form-control" type="text" placeholder="123 Street">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Ülke</label>
+                                <select class="custom-select">
+                                    <option>------------------------</option>
+                                    <option>Türkiye</option>
+                                    <option>Amerika Birleşik Devletleri</option>
+                                    <option>Rusya</option>
+                                    <option>İtalya</option>
+                                    <option>Irak</option>
+                                    <option>Almanya</option>
+                                    <option>İngiltere</option>
+                                    <option>Çin</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Şehir</label>
+                                <input class="form-control" type="text" placeholder="New York">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Belirtmek / bildirmek istediğiniz birşey var mı?</label>
+                                <input class="form-control" type="text" placeholder="New York">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>ZIP Code</label>
+                                <input class="form-control" type="text" placeholder="123">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            {% if total > 0 %}
+            <div class="col-lg-4">
+                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Sepetteki Ürünler</span></h5>
+                <table class="table table-light table-borderless table-hover text-center mb-3">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Ürünler</th>
+                            <th>Fiyat</th>
+                            <th>Adet</th>
+                            <th>Toplam</th>
+                        </tr>
+                    </thead>
+                    <tbody class="align-middle">
+                        {% for rs in schopcart %}
+                        <tr>
+                            <td class="align-middle"><img src="{{rs.product.image.url}}" alt="" style="width: 50px;">{{rs.product|safe|truncatechars_html:25}}</td>
+                        </a>
+                            <td class="align-middle">${{rs.product.discounted_price}}</td>
+                            <td class="align-middle">
+                                {{rs.quantity}}
+                            </td>
+                            <td class="align-middle">${{rs.amount}}</td>
+                        </tr>
+                        {% endfor %}
+                        
+                    </tbody>
+                </table>
+                <div class="bg-light p-30 mb-5">
+                    <!-- <div class="border-bottom">
+                        <h6 class="mb-3">Ürünler</h6>
+                        
+                        {% for rs in schopcart %}
+                        <div class="d-flex justify-content-between">
+                            <p>{{rs.product|safe|truncatechars_html:20}}</p>
+                            <h6 class="font-weight-medium">${{rs.amount}}</h6>
+                        </div>
+                        {% endfor %}
+
+                    </div> -->
+                    <div class="border-bottom pt-3 pb-2">
+                        <div class="d-flex justify-content-between">
+                            <h6 class="font-weight-medium">Kargo</h6>
+                            <h6 class="font-weight-medium">$10</h6>
+                        </div>
+                    </div>
+                    <div class="pt-2">
+                       
+                        <div class="d-flex justify-content-between mt-2">
+                            <h5>Toplam</h5>
+                            <h5>${{total}}</h5>
+                        </div>
+                    </div> 
+                </div> 
+                <div class="mb-5">
+                    <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Ödeme</span></h5>
+                    <div class="bg-light p-30">
+                        <div class="form-group">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" name="payment" id="paypal">
+                                <label class="custom-control-label" for="paypal">Paypal</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" name="payment" id="directcheck">
+                                <label class="custom-control-label" for="directcheck">Doğrudan Kontrol</label>
+                            </div>
+                        </div>
+                        <div class="form-group mb-4">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" name="payment" id="banktransfer">
+                                <label class="custom-control-label" for="banktransfer">Banka Transferi</label>
+                            </div>
+                        </div>
+                        <!-- <a href="{% url 'payment' %}" class="btn btn-block btn-primary font-weight-bold py-3">Siparişi Tamamla</a> -->
+                         <form action="" class="control-group" method="POST">
+                            {% csrf_token %}
+                            <a href="{% url 'payment' %}" class="btn btn-block btn-primary font-weight-bold py-3" type="submit" id="sendMessageButton"> Siparişi Tamamla </a>
+                        </form> <br> 
+                    </div>
+                    <div class="bg-light p-30 mt-3">
+                        <span class="">
+                            <h4 class="font-weight-semi-bold m-0 text-danger text-uppercase"> Önemli Uyarı  !!!! :  </h4> <br>
+                            <p class="text-uppercase text-danger font-weight-semi-bold">Aşşağıdaki uyarıyı okumadan herhangi işlem yapmayınız..</p>
+                          <h5 class="font-weight-semi-bold m-0"> Bu Bir Gerçek E-Ticaret Sitesi DEĞİLDİR ! Bu Site Sadece Proje Amaçlıdır. Gerçek Kart Bigilerinizi Kesinlikle Girmeyin ! <a href="{% url 'test_cart' %}" class="text-info">(Örnek Test Kartlarına Buradan Ulaşabilirsiniz)</a>   Eğer Gerçek Kart Bilgilerinizi Girerseniz Hesabınızdan Para Çekilecektir, Böyle Bir Durumda Sitemiz Sorumluluğu Reddeder. Sorumluluk Kişinin Kendisine Aittir. </h5>
+                        </span>
+                    </div>
+                   
+                </div>
+            </div>
+            {% else %}
+            <div class="col-lg-4">
+            <div class="col-lg-12">
+                <div class="bg-light p-30 mb-5">
+                    <div class="border-bottom">
+                        <h6 class="mb-3">Sepetinizde Ürün Bulunmamaktadır. Alışverişe <a href="{% url 'index' %}"> Buradan </a> Başlayabiirsiniz.</h6>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+                
+            
+        </div>
+    </div>
+    <!-- Checkout End -->
+
+
+    <!-- Footer Start -->
+    {% include 'includes/_footer.html' %}
+    <!-- Footer End -->
+
+    {% endblock content %}

@@ -1,0 +1,100 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+    {% block title %}
+    <title>Profil  >>>  {{setting.company}}</title>
+    {% endblock title %}
+
+    {% block head %}
+    <link rel="shortcut icon" type="image/x-icon" href="{{setting.icon.url}}">
+    {% endblock head %}
+
+    <!-- Topbar Start -->
+    {% include 'includes/_topbar.html' %}
+    <!-- Topbar End -->
+    {% block content %}
+    {% include 'includes/_navbar.html' %}
+
+
+    <!-- Breadcrumb Start -->
+    <div class="container-fluid">
+        <div class="row px-xl-5">
+            <div class="col-12">
+                <nav class="breadcrumb bg-light mb-30">
+                    <a class="breadcrumb-item text-dark" href="{% url 'index' %}">Anasayfa</a>
+                    <span class="breadcrumb-item active">Profil</span>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+{% include 'includes/__messages.html' %}
+    <div class="container">
+        <div class="row">
+                <div class="col-lg-3">
+                    <ul class="list-group">
+                        <button class="list-group-item"><a href="{% url 'user_update' %}">Profil Güncelle</a></button>
+                        <button class="list-group-item"><a href="">Siparişlerim</a></button>
+                        <button class="list-group-item"><a href="{% url 'comments' %}">Yorumlarım</a></button>
+                        <button class="list-group-item"><a href="{% url 'favories' %}">Favorilerim</a></button>
+                        <button class="list-group-item"><a href="{% url 'shoppingcart' %}">Sepetim</a></button>
+                        <button class="list-group-item"><a href="{% url 'password_reset' %}">Şifre Değiştir</a></button>
+                      </ul>
+                </div>
+                <div class="col-lg-9">
+                    <table class="shopping-cart-table table">
+                       
+                            <tr>
+                                <td class="text-center"><img style="width: 45%; height: 45%; border-radius: 45px;" src="{{profile.image.url}}"></td>
+                            </tr>
+                            
+                            {% if profile.user.first_name %}
+                            <tr>
+                                <th class="text-left">Ad Soyad</th>
+                                <td class="text-left text-uppercase">{{profile.user.first_name}}  {{profile.user.last_name}}</td>
+                            </tr>
+                            {% else %}
+                                <th class="text-left">Ad Soyad</th>
+                                <td class="text-left text-uppercase">İsim Soyisim bulunmuyor.</td>
+                            {% endif %}
+
+                            {% if profile.user.email %}
+                            <tr>
+                                <th class="text-left">E-mail</th>
+                                <td class="text-left">{{profile.user.email}}</td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <th class="text-left">E-mail</th>
+                                <td class="text-left">E-mail Adresi bulunmuyor</td>
+                            </tr>
+                            {% endif %}
+                            <tr>
+                                <th class="text-left">Telefon</th>
+                                <td class="text-left">{{profile.phone}}</td>
+                            </tr>
+                            <tr>
+                                <th class="text-left">Adres</th>
+                                <td class="text-left">{{profile.address}}</td>
+                            </tr>
+                            <tr>
+                                <th class="text-left">Şehir</th>
+                                <td class="text-left">{{profile.city}}</td>
+                            </tr>
+                            <tr>
+                                <th class="text-left">Ülke</th>
+                                <td class="text-left">{{profile.country}}</td>
+                            </tr>
+                        
+                    </table>
+                </div>
+        </div>
+    </div>
+
+
+ <!-- Footer Start -->
+ {% include 'includes/_footer.html' %}
+ <!-- Footer End -->
+
+ {% endblock content %}

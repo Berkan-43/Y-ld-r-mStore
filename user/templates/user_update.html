@@ -1,0 +1,72 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+    {% block title %}
+    <title>Profili Düzenle >>>  {{setting.company}}</title>
+    {% endblock title %}
+
+    {% block head %}
+    <link rel="shortcut icon" type="image/x-icon" href="{{setting.icon.url}}">
+    {% endblock head %}
+
+    <!-- Topbar Start -->
+    {% include 'includes/_topbar.html' %}
+    <!-- Topbar End -->
+    {% block content %}
+    {% include 'includes/_navbar.html' %}
+
+
+    <!-- Breadcrumb Start -->
+    <div class="container-fluid">
+        <div class="row px-xl-5">
+            <div class="col-12">
+                <nav class="breadcrumb bg-light mb-30">
+                    <a class="breadcrumb-item text-dark" href="{% url 'index' %}">Anasayfa</a>
+                    <span class="breadcrumb-item active">Profili Düenle</span>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <ul class="list-group">
+                    <button class="list-group-item"><a href="">Siparişlerim</a></button>
+                    <button class="list-group-item"><a href="">Yorumlarım</a></button>
+                    <button class="list-group-item"><a href="">Favorilerim</a></button>
+                    <button class="list-group-item"><a href="">Sepetim</a></button>
+                  </ul>
+            </div>
+            <div class="col-md-9">
+               <div class="content-section">
+                <div class="media">
+                    <img src="{{user.userprofile.image.url}}" class="mt-5 mb-3" style="width: 45%; height: 45%; border-radius: 30px;" alt="">
+                </div>
+                {% include 'includes/__messages.html' %}
+                <form action="" enctype="multipart/form-data" method="POST">
+                    {% csrf_token %}
+                    <fieldset class="form-group">
+                        {{user_form}}
+                        {{profile_form}}
+                    </fieldset>
+                    <div class="form-group">
+                        <button type="submit" class="btn-primary">Profili Güncelle</button>
+                    </div>
+                </form>
+               </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+
+      <!-- Footer Start -->
+      {% include 'includes/_footer.html' %}
+      <!-- Footer End -->
+  
+      {% endblock content %}

@@ -1,0 +1,72 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+    {% block title %}
+    <title>Ara  >>>  {{setting.company}}</title>
+    {% endblock title %}
+
+    {% block head %}
+    <link rel="shortcut icon" type="image/x-icon" href="{{setting.icon.url}}">
+    {% endblock head %}
+
+    <!-- Topbar Start -->
+    {% include 'includes/_topbar.html' %}
+    <!-- Topbar End -->
+    {% block content %}
+    {% include 'includes/_navbar.html' %}
+
+
+    <!-- Breadcrumb Start -->
+    <div class="container-fluid">
+        <div class="row px-xl-5">
+            <div class="col-12">
+                <nav class="breadcrumb bg-light mb-30">
+                    <a class="breadcrumb-item text-dark" href="{% url 'index' %}">Anasayfa</a>
+                    <span class="breadcrumb-item active">Ara</span>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+
+    <div class="section mt-5">
+        <div class="container-fluid">
+            <div class="row  px-xl-5">
+        
+                <div class="col-lg-12 table-responsive mb-5">
+                    <table class="table table-bordered text-center mb-0">
+                        <!-- <thead class="bg-secondary text-dark">
+                            <tr>
+                                <th class="text-left font-weight-semi-bold"><b><h4>Ürünler</h4></b></th>
+                                <th></th>
+                                <th class="font-weight-semi-bold"><b><h4>İndirimli Fiyat</h4></b></th>
+                                <th class="font-weight-semi-bold"><b><h4>Fiyat</h4></b></th>
+                            </tr>
+                        </thead> -->
+                        <tbody class="align-middle">
+                            
+                            {% for rs in products %}
+                            <tr>
+                                <td><a href="{% url 'detail' rs.id rs.slug %}" target="_blank" ><img src="{{rs.image.url}}" style="width: 100px;" alt=""></a></td>  
+                                <td><h5 class="product-name text-left"><a target="_blank" href="{% url 'detail' rs.id rs.slug %}">{{rs.title|safe|truncatechars_html:50}}</a></h4></td>
+                                <td><h5>${{rs.discounted_price}}</h5></td>
+                                <td><h6 style="color: red;"><del> ${{rs.price}}</del></h6></td>
+                            </tr>
+                            {% endfor %}
+        
+                        </tbody>
+                    </table>
+                </div>
+        </div>
+        </div>
+        </div>
+
+
+
+
+      <!-- Footer Start -->
+      {% include 'includes/_footer.html' %}
+      <!-- Footer End -->
+  
+      {% endblock content %}

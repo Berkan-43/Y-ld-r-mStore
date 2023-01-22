@@ -1,0 +1,71 @@
+{% load static %}
+<!-- Footer Start -->
+<div class="container-fluid bg-dark text-secondary mt-5 pt-5">
+    <div class="row px-xl-5 pt-5">
+        <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
+            <h5 class="text-secondary text-uppercase mb-4">İletişimde Kal</h5>
+            <p class="mb-4">{{setting.description|safe}}</p>
+            <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>123 Street, New York, USA</p>
+            <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>info@example.com</p>
+            <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+012 345 67890</p>
+        </div>
+        <div class="col-lg-8 col-md-12">
+            <div class="row">
+                <div class="col-md-4 mb-5">
+                    <h5 class="text-secondary text-uppercase mb-4">Hızlı Linkler</h5>
+                    <div class="d-flex flex-column justify-content-start">
+                        <a class="text-secondary mb-2" href="{% url 'index' %}"><i class="fa fa-angle-right mr-2"></i>Anasayfa</a>
+                        <a class="text-secondary mb-2" href="{% url 'about' %}"><i class="fa fa-angle-right mr-2"></i>Hakkımızda</a>
+                        <a class="text-secondary mb-2" href="{% url 'referance' %}"><i class="fa fa-angle-right mr-2"></i>Referanslar</a>
+                        <a class="text-secondary mb-2" href="{% url 'shoppingcart' %}"><i class="fa fa-angle-right mr-2"></i>Alışveriş Sepeti</a>
+                        <a class="text-secondary mb-2" href="{% url 'checkout' %}"><i class="fa fa-angle-right mr-2"></i>Ödeme</a>
+                        <a class="text-secondary" href="{% url 'contact' %}"><i class="fa fa-angle-right mr-2"></i>Bize Ulaşın</a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-5">
+                    <h5 class="text-secondary text-uppercase mb-4">Sosyal Medya</h5>
+                    <div class="d-flex flex-column justify-content-start">
+                        <a class="text-secondary mb-2" href="https://www.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNjY5MzI0NjMwLCJjYWxsc2l0ZV9pZCI6MjY5NTQ4NDUzMDcyMDk1MX0%3D" target="_blank"><i class="fa fa-angle-right mr-2"></i>Facebook</a>
+                        <a class="text-secondary mb-2" href="https://www.instagram.com/accounts/login/" target="_blank"><i class="fa fa-angle-right mr-2"></i>İnstagram</a>
+                        <a class="text-secondary mb-2" href="https://www.linkedin.com/in/berkan-yildirim-58b022247/" target="_blank"><i class="fa fa-angle-right mr-2"></i>linkedin</a>
+                        <a class="text-secondary mb-2" href="https://github.com/Berkan-43" target="_blank"><i class="fa fa-angle-right mr-2"></i>GitHub</a>
+                        <a class="text-secondary mb-2" href="https://twitter.com/i/flow/login?input_flow_data=%7B%22requested_variant%22%3A%22eyJsYW5nIjoidHIifQ%3D%3D%22%7D" target="_blank"><i class="fa fa-angle-right mr-2"></i>Twitter</a>
+                        <a class="text-secondary" href="https://profile.indeed.com/?hl=tr&co=TR&from=gnav-applymgt--app-tracker-webapp" target="_blank"><i class="fa fa-angle-right mr-2"></i>İndeed</a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-5">
+                    <h5 class="text-secondary text-uppercase mb-4">Abone ol</h5>
+                    <p>Sitemizden anında haberdar olmak için abone ol.</p>
+                    <form action="">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="E-Posta">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary">Abone Ol</button>
+                            </div>
+                        </div>
+                    </form>
+                    <h6 class="text-secondary text-uppercase mt-4 mb-3">Bizi Takip Edin</h6>
+                    <div class="d-flex">
+                        <a class="btn btn-primary btn-square mr-2" href="https://twitter.com/i/flow/login?input_flow_data=%7B%22requested_variant%22%3A%22eyJsYW5nIjoidHIifQ%3D%3D%22%7D" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-primary btn-square mr-2" href="https://www.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNjY5MzI0NjMwLCJjYWxsc2l0ZV9pZCI6MjY5NTQ4NDUzMDcyMDk1MX0%3D" ><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-primary btn-square mr-2" href="https://www.linkedin.com/in/berkan-yildirim-58b022247/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a class="btn btn-primary btn-square" href="https://www.instagram.com/accounts/login/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row border-top mx-xl-5 py-4" style="border-color: rgba(256, 256, 256, .1) !important;">
+        <div class="col-md-6 px-xl-0">
+            <p class="mb-md-0 text-center text-md-left text-secondary">
+                &copy; <a class="text-primary" href="#">YıldırımStore</a>. Tüm Hakları Saklıdır. Site
+                Sahibi
+                <a class="text-primary" href="#">Berkan YILDIRIM</a>
+            </p>
+        </div>
+        <div class="col-md-6 px-xl-0 text-center text-md-right">
+            <img class="img-fluid" src="{% static 'img/payments.jpg' %}" alt="">
+        </div>
+    </div>
+</div>
+<!-- Footer End -->

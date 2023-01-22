@@ -1,0 +1,85 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+    {% block title %}
+    <title>Favoriler  >>>  {{setting.company}}</title>
+    {% endblock title %}
+
+    {% block head %}
+    <link rel="shortcut icon" type="image/x-icon" href="{{setting.icon.url}}">
+    {% endblock head %}
+
+    <!-- Topbar Start -->
+    {% include 'includes/_topbar.html' %}
+    <!-- Topbar End -->
+    {% block content %}
+    {% include 'includes/_navbar.html' %}
+
+
+   <!-- Breadcrumb Start -->
+   <div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-12">
+            <nav class="breadcrumb bg-light mb-30">
+                <a class="breadcrumb-item text-dark" href="{% url 'index' %}">Anasayfa</a>
+                <a class="breadcrumb-item text-dark" href="#">Mağaza</a>
+                <span class="breadcrumb-item active">Favoriler</span>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+    {% include 'includes/__messages.html' %}
+
+     <!-- Cart Start -->
+     <div class="container-fluid ">
+        <div class="row px-xl-5">
+            <div class="col-lg-8 table-responsive mb-5">
+                <table class="table table-light table-borderless table-hover text-center mb-0">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Ürünler</th>
+                            <th>Fiyat</th>
+                            <th>Adet</th>
+                            <th>Toplam</th>
+                            <!-- <th>Sepete Ekle</th> -->
+                            <th>Sil</th>
+                        </tr>
+                    </thead>
+                    <tbody class="align-middle">
+                        {% for rs in favori %}
+                        <tr>
+                            <td class="align-middle"><img src="{{rs.product.image.url}}" alt="" style="width: 50px;">{{rs.product|safe|truncatechars_html:20}}</td>
+                            <td class="align-middle">${{rs.product.discounted_price}}</td>
+                            <td class="align-middle">
+                               {{rs.quantity}}
+                            </td>
+                            <td class="align-middle">${{rs.amount}}</td>
+                           <!--  <td class="align-middle"><a href="{% url 'addtocart' rs.id %}"  class="btn btn-sm btn-primary"><i class="fas fa-shopping-cart text-dark"></i></a></td> -->
+                            <td class="align-middle"><a href="{% url 'deleteformfavories' rs.id %}" onclick="return confirm ('Ürünü favorilerden silmek istediğinizden emin misiniz ?')" class="btn btn-sm btn-primary"><i class="fa fa-times"></i></a></td>
+                        </tr>
+                        {% endfor %}
+                        
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-lg-4">
+                <div class="card border-secondary mb-5">
+                    <div class="card-footer border-secondary bg-transparent">
+                        <div class="d-flex justify-content-between mt-2">
+                            <h5 class="font-weight-bold">Toplam</h5>
+                            <h5 class="font-weight-bold">${{total}}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Cart End -->
+    
+      <!-- Footer Start -->
+      {% include 'includes/_footer.html' %}
+      <!-- Footer End -->
+  
+      {% endblock content %}

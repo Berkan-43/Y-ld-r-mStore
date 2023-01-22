@@ -1,0 +1,135 @@
+{% extends 'index.html' %}
+{% load static %}
+
+    <!-- Tobar Start -->
+    {% include 'includes/_topbar.html' %}
+    <!-- Topbar End -->
+
+    {% block title %}
+    <title>Sepetim  >>>  {{setting.company}}</title>
+    {% endblock title %}
+
+    {% block head %}
+    <link rel="shortcut icon" type="image/x-icon" href="{{setting.icon.url}}">
+    {% endblock head %}
+
+    {% block content %}
+    <!-- Navbar Start -->
+    {% include 'includes/_navbar.html' %}
+    <!-- Navbar End -->
+
+
+    <!-- Breadcrumb Start -->
+    <div class="container-fluid">
+        <div class="row px-xl-5">
+            <div class="col-12">
+                <nav class="breadcrumb bg-light mb-30">
+                    <a class="breadcrumb-item text-dark" href="{% url 'index' %}">Anasayfa</a>
+                    <a class="breadcrumb-item text-dark" href="#">Mağaza</a>
+                    <span class="breadcrumb-item active">Sepetim</span>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+
+
+    {% include 'includes/__messages.html' %}
+    
+
+    <!-- Cart Start -->
+    <div class="container-fluid">
+        <div class="row px-xl-5">
+            {% if total > 0 %}
+            <div class="col-lg-8 table-responsive mb-5">
+                
+                
+                <table class="table table-light table-borderless table-hover text-center mb-0">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Ürünler</th>
+                            <th>Fiyat</th>
+                            <th>Adet</th>
+                            <th>Toplam</th>
+                            <th>Sil</th>
+                        </tr>
+                    </thead>
+                   
+                    <tbody class="align-middle">
+                        {% for rs in schopcart %}
+                        <tr>
+                            <td class="align-middle"><img src="{{rs.product.image.url}}" alt="" style="width: 50px;">{{rs.product|safe|truncatechars_html:20}}</td>
+                            <td class="align-middle">${{rs.product.discounted_price}}</td>
+                            <td class="align-middle">
+                                {{rs.quantity}}
+                            </td>
+                            <td class="align-middle">${{rs.amount}}</td>
+                            <td class="align-middle"><a href="{% url 'deleteformCart' rs.id %}" onclick="return confirm ('Ürünü silmek istediğinizden emin misiniz ?')" class="btn btn-sm btn-primary"><i class="fa fa-times"></i></a></td>
+                        </tr>            
+                        {% endfor %}
+                    </tbody>
+                    
+                </table>
+            </div>
+            <div class="col-lg-4">
+                <form class="mb-30" action="">
+                    <div class="input-group">
+                        <input type="text" class="form-control border-0 p-4" value="{{zipcode}}">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary">Kuponu Kodu</button>
+                        </div>
+                    </div>
+                </form>
+                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Sepet Özeti</span></h5>
+                <div class="bg-light p-30 mb-5">
+                    <div class="border-bottom pb-2">
+                        <div class="d-flex justify-content-between">
+                            <h6 class="font-weight-medium">Kargo</h6>
+                            <h6 class="font-weight-medium">$10</h6>
+                        </div>
+                    </div>
+                    <div class="pt-2">
+                        
+                        <div class="d-flex justify-content-between mt-2">
+                            <h5>Toplam</h5>
+                            <h5>${{total}}</h5>
+                        </div>
+                        <a href="{% url 'checkout' %}" class="btn btn-block btn-primary my-3 py-3" >Şimdi Al</a>
+                       
+                        
+                    </div>
+                </div>
+            </div>
+                {% else %}
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="text-center">
+                                <i class="fa fa-shopping-cart"></i>
+                            </div>
+                            <div class="alert alert-warning text-center" role="alert">
+                                Sepetinizde Ürün Bulunmamaktadır.
+                            </div>
+                            <div class="text-center">
+                                <a class="btn btn-primary text-center" role="alert" href="{% url 'index' %}">
+                                    Alışverişe Başla
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                {% endif %}
+               
+                
+           
+        </div>
+    </div>
+    <!-- Cart End -->
+   
+    
+    <!-- Footer Start -->
+    {% include 'includes/_footer.html' %}
+    <!-- Footer End -->
+
+    {% endblock content %}
