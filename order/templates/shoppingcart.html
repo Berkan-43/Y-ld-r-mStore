@@ -59,11 +59,11 @@
                         {% for rs in schopcart %}
                         <tr>
                             <td class="align-middle"><img src="{{rs.product.image.url}}" alt="" style="width: 50px;">{{rs.product|safe|truncatechars_html:20}}</td>
-                            <td class="align-middle">${{rs.product.discounted_price}}</td>
+                            <td class="align-middle">{{rs.product.discounted_price}} TL</td>
                             <td class="align-middle">
                                 {{rs.quantity}}
                             </td>
-                            <td class="align-middle">${{rs.amount}}</td>
+                            <td class="align-middle">{{rs.amount}} TL</td>
                             <td class="align-middle"><a href="{% url 'deleteformCart' rs.id %}" onclick="return confirm ('Ürünü silmek istediğinizden emin misiniz ?')" class="btn btn-sm btn-primary"><i class="fa fa-times"></i></a></td>
                         </tr>            
                         {% endfor %}
@@ -85,14 +85,14 @@
                     <div class="border-bottom pb-2">
                         <div class="d-flex justify-content-between">
                             <h6 class="font-weight-medium">Kargo</h6>
-                            <h6 class="font-weight-medium">$10</h6>
+                            <h6 class="font-weight-medium">10 TL</h6>
                         </div>
                     </div>
                     <div class="pt-2">
                         
                         <div class="d-flex justify-content-between mt-2">
                             <h5>Toplam</h5>
-                            <h5>${{total}}</h5>
+                            <h5>{{total}} TL</h5>
                         </div>
                         <a href="{% url 'checkout' %}" class="btn btn-block btn-primary my-3 py-3" >Şimdi Al</a>
                        

@@ -162,11 +162,11 @@
                             </div>
                         </div>
                         
-                        {% for i in top_seller %}
+                        {% for i in campaigns %}
                         <div class="col-lg-4 col-md-6 col-sm-6 pb-1 ">
                             <div class="product-item bg-light mb-4 ">
                                 <div class="product-img position-relative overflow-hidden resim">
-                                <a href="{% url 'categories_products' i.slug %}"  title="{{i.title}}" class="img-link cat-img position-relative overflow-hidden">
+                                <a href="{% url 'campaigns_products' i.slug %}"  title="{{i.title}}" class="img-link cat-img position-relative overflow-hidden">
                                     <img class="img-fluid w-100" src="{{i.image.url}}" alt="">
                                 </a>
                                 </div>
@@ -189,37 +189,39 @@
 
 
     <!-- Products Start -->
-    <div class="container-fluid pt-5 pb-3">
-        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Trend Ürünler</span></h2>
+    <div class="container-fluid py-5">
         <div class="row px-xl-5">
-            {% for rs in trending_products %}
-            <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-                <div class="product-item bg-light mb-4">
-                    <div class="product-img position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="{{rs.image.url}}" alt="">
-                        <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" href="{% url 'addtocart' rs.id %}"><i class="fa fa-shopping-cart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href="{% url 'favoriesadd' rs.id %}"><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href="{% url 'detail' rs.id rs.slug %}"><i class="fa fa-sync-alt"></i></a>
+            <div class="col">
+                <div class="owl-carousel related-carousel">
+                    
+                    {% for i in trending_products %}
+                    <div class="product-item bg-light">
+                        <div class="product-img position-relative overflow-hidden">
+                            <img class="img-fluid w-100" src="{{i.image.url}}" alt="">
+                            <div class="product-action">
+                                <a class="btn btn-outline-dark btn-square" href="{% url 'addtocart' i.id %}"><i class="fa fa-shopping-cart"></i></a>
+                                <a class="btn btn-outline-dark btn-square" href="{% url 'favoriesadd' i.id %}"><i class="far fa-heart"></i></a>
+                                <a class="btn btn-outline-dark btn-square" href="{% url 'detail' i.id i.slug %}"><i class="fa fa-sync-alt"></i></a>
+                            </div>
+                        </div>
+                        <div class="text-center py-4">
+                            <a class="h6 text-decoration-none text-truncate" href="">{{i.title}}</a>
+                            <div class="d-flex align-items-center justify-content-center mt-2">
+                                <h5>{{i.price}} TL</h5><h6 class="text-muted ml-2"><del>{{i.discounted_price}} TL</del></h6>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-center mb-1">
+                                <small class="fa fa-star text-primary mr-1"></small>
+                                <small class="fa fa-star text-primary mr-1"></small>
+                                <small class="fa fa-star text-primary mr-1"></small>
+                                <small class="fa fa-star text-primary mr-1"></small>
+                                <small class="fa fa-star text-primary mr-1"></small>
+                                <small>(99)</small>
+                            </div>
                         </div>
                     </div>
-                    <div class="text-center py-4">
-                        <a class="h6 text-decoration-none text-truncate" href="{% url 'detail' rs.id rs.slug %}">{{rs.title|safe|truncatechars_html:30}}</a>
-                        <div class="d-flex align-items-center justify-content-center mt-2">
-                            <h5>${{rs.discounted_price}}</h5><h6 class="text-muted ml-2"><del>${{rs.price}}</del></h6>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-center mb-1">
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small>(99)</small>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
-            {% endfor %}
         </div>
     </div>
     <!-- Products End -->
@@ -246,38 +248,38 @@
 
 
     <!-- Products Start -->
-    <div class="container-fluid pt-5 pb-3">
-        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Yeni Geldi</span></h2>
+    <div class="container-fluid py-5">
         <div class="row px-xl-5">
-            
-            {% for rs in just_came %}
-            <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-                <div class="product-item bg-light mb-4">
-                    <div class="product-img position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="{{rs.image.url}}" alt="">
-                        <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" href="{% url 'addtocart' rs.id %}"><i class="fa fa-shopping-cart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href="{% url 'detail' rs.id rs.slug %}"><i class="fa fa-sync-alt"></i></a>
+            <div class="col">
+                <div class="owl-carousel related-carousel">
+                    
+                    {% for i in trending_products %}
+                    <div class="product-item bg-light">
+                        <div class="product-img position-relative overflow-hidden">
+                            <img class="img-fluid w-100" src="{{i.image.url}}" alt="">
+                            <div class="product-action">
+                                <a class="btn btn-outline-dark btn-square" href="{% url 'addtocart' i.id %}"><i class="fa fa-shopping-cart"></i></a>
+                                <a class="btn btn-outline-dark btn-square" href="{% url 'favoriesadd' i.id %}"><i class="far fa-heart"></i></a>
+                                <a class="btn btn-outline-dark btn-square" href="{% url 'detail' i.id i.slug %}"><i class="fa fa-sync-alt"></i></a>
+                            </div>
+                        </div>
+                        <div class="text-center py-4">
+                            <a class="h6 text-decoration-none text-truncate" href="">{{i.title}}</a>
+                            <div class="d-flex align-items-center justify-content-center mt-2">
+                                <h5>{{i.price}} TL</h5><h6 class="text-muted ml-2"><del>{{i.discounted_price}} TL</del></h6>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-center mb-1">
+                                <small class="fa fa-star text-primary mr-1"></small>
+                                <small class="fa fa-star text-primary mr-1"></small>
+                                <small class="fa fa-star text-primary mr-1"></small>
+                                <small class="fa fa-star text-primary mr-1"></small>
+                                <small class="fa fa-star text-primary mr-1"></small>
+                                <small>(99)</small>
+                            </div>
                         </div>
                     </div>
-                    <div class="text-center py-4">
-                        <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
-                        <div class="d-flex align-items-center justify-content-center mt-2">
-                            <h5>$123.00</h5><h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-center mb-1">
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small>(99)</small>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
-            </div>
-            {% endfor %}
             </div>
         </div>
     </div>

@@ -19,6 +19,7 @@ def index(request):
     trending_products = Product.objects.all().order_by('-id')[:8]
     slider_category =Category.objects.all().order_by('id')[:3]
     popular_products = Product.objects.all().order_by('id')[:2]
+    campaigns = Campaigns.objects.all()
     request.session['cart_items'] = ShopCart.objects.filter(user_id=current_user.id).count()
     return render(request, 'index.html', context={
         'setting': setting,
@@ -28,6 +29,7 @@ def index(request):
         'trending_products': trending_products,
         'slider_category': slider_category,
         'popular_products': popular_products,
+        'campaigns': campaigns,
         })
 
 

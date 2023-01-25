@@ -51,11 +51,11 @@
                         {% for rs in favori %}
                         <tr>
                             <td class="align-middle"><img src="{{rs.product.image.url}}" alt="" style="width: 50px;">{{rs.product|safe|truncatechars_html:20}}</td>
-                            <td class="align-middle">${{rs.product.discounted_price}}</td>
+                            <td class="align-middle">{{rs.product.discounted_price}} TL</td>
                             <td class="align-middle">
                                {{rs.quantity}}
                             </td>
-                            <td class="align-middle">${{rs.amount}}</td>
+                            <td class="align-middle">{{rs.amount}} TL</td>
                            <!--  <td class="align-middle"><a href="{% url 'addtocart' rs.id %}"  class="btn btn-sm btn-primary"><i class="fas fa-shopping-cart text-dark"></i></a></td> -->
                             <td class="align-middle"><a href="{% url 'deleteformfavories' rs.id %}" onclick="return confirm ('Ürünü favorilerden silmek istediğinizden emin misiniz ?')" class="btn btn-sm btn-primary"><i class="fa fa-times"></i></a></td>
                         </tr>
@@ -69,7 +69,7 @@
                     <div class="card-footer border-secondary bg-transparent">
                         <div class="d-flex justify-content-between mt-2">
                             <h5 class="font-weight-bold">Toplam</h5>
-                            <h5 class="font-weight-bold">${{total}}</h5>
+                            <h5 class="font-weight-bold">{{total}} TL</h5>
                         </div>
                     </div>
                 </div>

@@ -7,6 +7,7 @@ class ProductImagesInline(admin.TabularInline):
     extra = 5
 
 admin.site.register(Category)
+admin.site.register(Campaigns)
 
 
 @admin.register(Product)

@@ -31,6 +31,21 @@ class Category(models.Model):
             k = k.parent
         return ' -> '.join(full_path[::-1])
 
+class Campaigns(models.Model):
+    title = models.CharField(max_length=150)
+    keywords = models.CharField(max_length=255)
+    image = models.ImageField(null=True, blank=True, upload_to='images/')
+    slug = AutoSlugField(populate_from='title', unique=True)
+    create_at = models.DateTimeField(auto_now_add=True)
+    update_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = 'Kampanyalar'
+        verbose_name_plural = 'Kampanyalar'
+        verbose_name = 'Kampanya'
+
+    def __str__(self):
+        return self.title
 
 class Product(models.Model):
     STATUS = (
@@ -39,6 +54,7 @@ class Product(models.Model):
     )
     title = models.CharField(max_length=300)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='product', null=True, blank=True)
+    campaigns = models.ForeignKey(Campaigns, on_delete=models.CASCADE, related_name='campaigns_product', null=True, blank=True)
     keywords = models.CharField(max_length=255)
     description = models.CharField(blank=True, null=True,max_length=50)
     image = models.ImageField(null=True, blank=True, upload_to='image/')

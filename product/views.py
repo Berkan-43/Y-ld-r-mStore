@@ -21,12 +21,25 @@ def category_products(request, slug):
         'category':category,
         'kategori':kategori,
     })
+def campaigns_products(request, slug):
+    setting = Setting.objects.get(pk=1) 
+    product = Product.objects.filter(campaigns__slug = slug)
+    category = Category.objects.all()
+    # döngü kullanmaya gerek kalmasın diye slug ile gelen kategoriyi get ile getiriyoruz
+    campaigns = Campaigns.objects.get(slug=slug)
+    return render(request, 'campaigns.html', context={
+        'setting':setting,
+        'product':product,
+        'category':category,
+        'campaigns':campaigns,
+    })
 
 
 def detail(request, id, slug):
     setting = Setting.objects.get(pk=1) 
     category = Category.objects.all()
     product = Product.objects.get(pk=id)
+    popular_products = Product.objects.all().order_by('id')[:2]
     images = Images.objects.filter(product_id=id)
     comments = Comment.objects.filter(product_id=id, status='True')
     relevant_product = Product.objects.all()[:20]
@@ -36,8 +49,28 @@ def detail(request, id, slug):
         'product':product,
         'images':images,
         'comments':comments,
-        'relevant_product':relevant_product
+        'relevant_product':relevant_product,
+        'popular_products':popular_products,
     })
+
+def campaigns_detail(request, id, slug):
+    setting = Setting.objects.get(pk=1) 
+    category = Category.objects.all()
+    product = Product.objects.get(pk=id)
+    popular_products = Product.objects.all().order_by('id')[:2]
+    images = Images.objects.filter(product_id=id)
+    comments = Comment.objects.filter(product_id=id, status='True')
+    relevant_product = Product.objects.all()[:20]
+    return render(request, 'campaigns_detail.html', context={
+        'setting':setting,
+        'category':category,
+        'product':product,
+        'images':images,
+        'comments':comments,
+        'relevant_product':relevant_product,
+        'popular_products':popular_products,
+    })
+
 
 @login_required(login_url='login')
 def addcomment(request, id):
