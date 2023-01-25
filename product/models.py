@@ -54,7 +54,7 @@ class Product(models.Model):
     )
     title = models.CharField(max_length=300)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='product', null=True, blank=True)
-    campaigns = models.ForeignKey(Campaigns, on_delete=models.CASCADE, related_name='campaigns_product', null=True, blank=True)
+    campaigns = models.ManyToManyField(Campaigns, blank=True)
     keywords = models.CharField(max_length=255)
     description = models.CharField(blank=True, null=True,max_length=50)
     image = models.ImageField(null=True, blank=True, upload_to='image/')

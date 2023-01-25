@@ -175,7 +175,7 @@
                                 <div class="product-action">
                                     <a class="btn btn-outline-dark btn-square" href="{% url 'addtocart' i.id %}"><i class="fa fa-shopping-cart"></i></a>
                                     <a class="btn btn-outline-dark btn-square" href="{% url 'favoriesadd' i.id %}"><i class="far fa-heart"></i></a>
-                                    <a class="btn btn-outline-dark btn-square" href="{% url 'detail' rs.id rs.slug %}"><i class="fa fa-sync-alt"></i></a>
+                                    <a class="btn btn-outline-dark btn-square" href="{% url 'detail' i.id i.slug %}"><i class="fa fa-sync-alt"></i></a>
                                 </div>
                             </div>
                             <div class="text-center py-4">
