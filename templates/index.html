@@ -238,11 +238,11 @@
                     </div>
                     
                     {% for i in campaigns2 %}
-                    <div class="col-lg-4 col-md-6 col-sm-6 pb-1 campaigns">
-                        <div class="product-item bg-light mb-4 ">
+                    <div class="col-lg-4 col-md-6 col-sm-6 pb-1 campaigns ">
+                        <div class="product-item bg-light mb-4">
                             <div class="product-img position-relative overflow-hidden resim">
                             <a href="{% url 'campaigns_products' i.slug %}"  title="{{i.title}}" class="img-link cat-img position-relative overflow-hidden">
-                                <img class="img-fluid w-100" src="{{i.image.url}}" alt="">
+                                <img class="img-fluid w-100 rounded-1" src="{{i.image.url}}" alt="">
                             </a>
                             </div>
                             <div class=" py-4 kapsayici">
