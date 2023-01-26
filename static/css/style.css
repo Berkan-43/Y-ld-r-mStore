@@ -9757,3 +9757,7 @@ a.text-dark:hover, a.text-dark:focus {
 .liste{
   list-style: none;
 }
+.detail{
+  margin-left: 0%;
+  margin-right: 100%;
+}

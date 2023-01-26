@@ -2,7 +2,7 @@
 {% load static %}
 
     {% block title %}
-    <title>Detaylar  >>>  {{setting.company}}</title>
+    <title>{{product.title}}  >>>  {{setting.company}}</title>
     {% endblock title %}
 
     {% block head %}
@@ -170,7 +170,9 @@
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="tab-pane-2">
                             <h4 class="mb-3">Özellikler</h4>
+                            <div class="col-6 pb-1">
                             <p>{{product.detail|safe}}</p>
+                        </div>
                         </div>
                         
                         <div class="tab-pane fade" id="tab-pane-3">

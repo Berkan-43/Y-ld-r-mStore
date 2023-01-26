@@ -17,19 +17,23 @@ def index(request):
     category_list = Category.objects.all().order_by('-id')[:6]
     just_came = Product.objects.all().order_by('-id')[:8]
     trending_products = Product.objects.all().order_by('-id')[:8]
-    slider_category =Category.objects.all().order_by('id')[:3]
-    popular_products = Product.objects.all().order_by('id')[:2]
-    campaigns = Campaigns.objects.all()
+    slider_product =Product.objects.all().order_by('id')[:3]
+    popular_products = Product.objects.all().order_by('-id')[:2]
+
+    campaigns = Campaigns.objects.filter(id__range =(1,12))
+    campaigns2 = Campaigns.objects.filter(id__range =(13,25))
     request.session['cart_items'] = ShopCart.objects.filter(user_id=current_user.id).count()
+    request.session['favories_items'] = Favories.objects.filter(user_id=current_user.id).count()
     return render(request, 'index.html', context={
         'setting': setting,
         'category': category,
         'category_list': category_list,
         'just_came': just_came,
         'trending_products': trending_products,
-        'slider_category': slider_category,
+        'slider_product': slider_product,
         'popular_products': popular_products,
         'campaigns': campaigns,
+        'campaigns2':campaigns2
         })
 
 
