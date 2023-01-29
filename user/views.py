@@ -31,6 +31,11 @@ class RegisterUser(SuccessMessageMixin, FormView):
 
     def form_valid(self, form):
         user = form.save(commit=True)
+        current_user=user
+        data=UserProfile()
+        data.user_id=current_user.id
+        data.image="image/users/no-avatar.jpg"
+        data.save()
 
         mail_subject = 'Oturum açmadan önce. Hesabınızı etkinleştirin.'
         current_site = get_current_site(self.request)

@@ -50,8 +50,8 @@
                             <tr>
                                 <td><a href="{% url 'detail' rs.id rs.slug %}" target="_blank" ><img src="{{rs.image.url}}" style="width: 100px;" alt=""></a></td>  
                                 <td><h5 class="product-name text-left"><a target="_blank" href="{% url 'detail' rs.id rs.slug %}">{{rs.title|safe|truncatechars_html:50}}</a></h4></td>
-                                <td><h5>${{rs.discounted_price}}</h5></td>
-                                <td><h6 style="color: red;"><del> ${{rs.price}}</del></h6></td>
+                                <td><h5>{{rs.discounted_price}} TL</h5></td>
+                                <td><h6 style="color: red;"><del> {{rs.price}} TL</del></h6></td>
                             </tr>
                             {% endfor %}
         

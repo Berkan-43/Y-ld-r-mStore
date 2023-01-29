@@ -10,7 +10,7 @@ from user.models import UserProfile
 from django.utils.crypto import get_random_string
 
 
-# İyzico ödeme işlemleri için gerekli kütüphaneler
+# İyzico ödeme işlemleri için gerekli İmportlar
 
 
 import iyzipay
@@ -99,7 +99,7 @@ def payment(request):
         'currency': 'TRY',
         'basketId': 'B67832',
         'paymentGroup': 'PRODUCT',
-        "callbackUrl": "http://127.0.0.1:8000/result/",
+        "callbackUrl": "http://127.0.0.1:8000/order/result/",
         "enabledInstallments": ['2', '3', '6', '9'],
         'buyer': buyer,
         'shippingAddress': address,

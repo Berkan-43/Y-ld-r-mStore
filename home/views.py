@@ -15,10 +15,12 @@ def index(request):
     setting = Setting.objects.get(pk=1)
     category = Category.objects.all()
     category_list = Category.objects.all().order_by('-id')[:6]
-    just_came = Product.objects.all().order_by('-id')[:8]
-    trending_products = Product.objects.all().order_by('-id')[:8]
+    
+    just_came = Product.objects.filter(id__range =(19,41))
+    trending_products = Product.objects.filter(id__range =(42,63))
+    populer_products = Product.objects.filter(id__range =(64,85))
     slider_product =Product.objects.all().order_by('id')[:3]
-    popular_products = Product.objects.all().order_by('-id')[:2]
+    special_offer = Product.objects.all().order_by('-id')[:2]
 
     campaigns = Campaigns.objects.filter(id__range =(1,12))
     campaigns2 = Campaigns.objects.filter(id__range =(13,25))
@@ -31,9 +33,10 @@ def index(request):
         'just_came': just_came,
         'trending_products': trending_products,
         'slider_product': slider_product,
-        'popular_products': popular_products,
+        'special_offer': special_offer,
         'campaigns': campaigns,
-        'campaigns2':campaigns2
+        'campaigns2':campaigns2,
+        'populer_products': populer_products,
         })
 
 
