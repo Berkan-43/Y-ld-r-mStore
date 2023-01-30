@@ -48,14 +48,10 @@ def payment(request):
     profile = UserProfile.objects.get(user_id=current_user.id)
     zipcode = get_random_string(5).upper()
 
-    
     schopcart = ShopCart.objects.filter(user_id=current_user.id)
     total = 0
     for rs in schopcart :
         total +=  rs.product.discounted_price * rs.quantity
-
-   
-
 
     buyer={
         'id': profile.user.id,
@@ -112,7 +108,7 @@ def payment(request):
         'locale': 'tr',
         'conversationId': '123456789',
         'price': '1',
-        'paidPrice': total,
+        'paidPrice': '1', # Buraya Total değerini yazdırınca bazı ürünlerde  -->>  KeyError at /order/payment/ 'checkoutFormContent' hatası veriyor, ödeme formu açılmıyor. bazı ürünlerde ise hata vermiyor ödeme formu açılıyor, eğer form açıldıysa ödeme başarılı olsa bile başarısız diyor.
         'currency': 'TRY',
         'basketId': 'B67832',
         'paymentGroup': 'PRODUCT',
@@ -182,30 +178,30 @@ def result(request):
 
 def success(request):
     current_user = request.user
-    schopcart = ShopCart.objects.filter(id=id).delete()
+    schopcart = ShopCart.objects.filter(user=request.user)
+
+    order = Order(
+        user = request.user,
+        amount=0
+    )
+    order.save()
+
+    for item in schopcart:
+        order.shopcart.add(item)
+
+    order = Order(
+        user = request.user,
+        amount=0
+    )
+    order.save()
+    
+    for item in schopcart:
+        order.shopcart.add(item)
+
+    # Bu kısımı ekledikten sonra ödeme başarılı olsa bile başarısız diyor.
+    for item in schopcart:
+        item.delete()
     request.session['cart_items'] = ShopCart.objects.filter(user_id=current_user.id).count()
-
-    order = Order(
-        user = request.user,
-        amount=0
-    )
-    order.save()
-
-    for item in schopcart:
-        order.shopcart.add(item)
-
-    order = Order(
-        user = request.user,
-        amount=0
-    )
-    order.save()
-    
-    for item in schopcart:
-        order.shopcart.add(item)
-
-    for item in schopcart:
-        item.delete() 
-    
 
     messages.success(request, 'Ödeme Başarılı')
     return redirect('completed')

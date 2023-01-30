@@ -61,7 +61,19 @@
                             <td class="align-middle"><img src="{{rs.product.image.url}}" alt="" style="width: 50px;">{{rs.product|safe|truncatechars_html:20}}</td>
                             <td class="align-middle">{{rs.product.discounted_price}} TL</td>
                             <td class="align-middle">
-                                {{rs.quantity}}
+                                <div class="input-group quantity mx-auto" style="width: 100px;">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-sm btn-primary btn-minus" >
+                                        <i class="fa fa-minus"></i>
+                                        </button>
+                                    </div>
+                                    <input type="number" name="quantity" class="form-control form-control-sm bg-secondary border-0 text-center" min="1" max="{{rs.amount}}" value="{{rs.quantity}}">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-sm btn-primary btn-plus">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
                             </td>
                             <td class="align-middle">{{rs.amount}} TL</td>
                             <td class="align-middle"><a href="{% url 'deleteformCart' rs.id %}" onclick="return confirm ('Ürünü silmek istediğinizden emin misiniz ?')" class="btn btn-sm btn-primary"><i class="fa fa-times"></i></a></td>
@@ -85,7 +97,7 @@
                     <div class="border-bottom pb-2">
                         <div class="d-flex justify-content-between">
                             <h6 class="font-weight-medium">Kargo</h6>
-                            <h6 class="font-weight-medium">10 TL</h6>
+                            <h6 class="font-weight-medium">Bedava</h6>
                         </div>
                     </div>
                     <div class="pt-2">

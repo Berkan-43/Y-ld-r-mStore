@@ -183,11 +183,11 @@
                         <tr>
                             <td class="align-middle"><img src="{{rs.product.image.url}}" alt="" style="width: 50px;">{{rs.product|safe|truncatechars_html:25}}</td>
                         </a>
-                            <td class="align-middle">${{rs.product.discounted_price}}</td>
+                            <td class="align-middle">{{rs.product.discounted_price}} TL</td>
                             <td class="align-middle">
                                 {{rs.quantity}}
                             </td>
-                            <td class="align-middle">${{rs.amount}}</td>
+                            <td class="align-middle">{{rs.amount}} TL</td>
                         </tr>
                         {% endfor %}
                         
@@ -208,14 +208,14 @@
                     <div class="border-bottom pt-3 pb-2">
                         <div class="d-flex justify-content-between">
                             <h6 class="font-weight-medium">Kargo</h6>
-                            <h6 class="font-weight-medium">$10</h6>
+                            <h6 class="font-weight-medium">Bedava</h6>
                         </div>
                     </div>
                     <div class="pt-2">
                        
                         <div class="d-flex justify-content-between mt-2">
                             <h5>Toplam</h5>
-                            <h5>${{total}}</h5>
+                            <h5>{{total}} TL</h5>
                         </div>
                     </div> 
                 </div> 
