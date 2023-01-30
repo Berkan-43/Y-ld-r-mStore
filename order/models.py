@@ -53,7 +53,7 @@ class Order(models.Model):
         ('Canceled', 'İptal Edildi')
     ]
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    shopcart = models.ManyToManyField(ShopCart, null=True)
+    shopcart = models.ManyToManyField(ShopCart)
     amount = models.FloatField()
     is_it_paid = models.BooleanField(default=False, verbose_name='Ödeme Durumu')
     code =models.CharField(max_length=5, editable=False)
