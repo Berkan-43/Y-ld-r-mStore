@@ -17,9 +17,9 @@ class FavoriesAdmin(admin.ModelAdmin):
     list_display = (
         'user',
         'product',
-        # 'discounted_price',
-        # 'quantity',
-        # 'amount'
+        'discounted_price',
+        'quantity',
+        'amount'
     )
     list_filter = ['user']
 
@@ -52,18 +52,18 @@ class OrderAdmin(admin.ModelAdmin):
     ]
     list_display_links= ('first_name',)
     # Değiştirilemeyen alanlar
-    readonly_fields = (
+    # readonly_fields = (
         
-        'address',
-        'city',
-        'country',
-        'phone',
-        'first_name',
-        'ip',
-        'last_name',
-        'phone',
-        'city'
-    )
+    #     'address',
+    #     'city',
+    #     'country',
+    #     'phone',
+    #     'first_name',
+    #     'ip',
+    #     'last_name',
+    #     'phone',
+    #     'city'
+    # )
     inlines = [OrderProductLine]
 
 
@@ -80,4 +80,5 @@ class OrderProductAdmin(admin.ModelAdmin):
     list_filter = [
         'user'
     ]
+
 

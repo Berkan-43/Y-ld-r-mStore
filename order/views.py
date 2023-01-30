@@ -39,29 +39,46 @@ sozlukToken = list()
 
 def payment(request):
     context = dict()
+    
+    current_user = request.user
+    category = Category.objects.all()
+    campaigns = Campaigns.objects.all()
+    
+    product  = Product.objects.all()
+    profile = UserProfile.objects.get(user_id=current_user.id)
+    zipcode = get_random_string(5).upper()
+
+    
+    schopcart = ShopCart.objects.filter(user_id=current_user.id)
+    total = 0
+    for rs in schopcart :
+        total +=  rs.product.discounted_price * rs.quantity
+
    
+
+
     buyer={
-        'id': 'BY789',
-        'name': 'John', 
-        'surname': 'Doe',
-        'gsmNumber': '+905350000000',
-        'email': 'email@email.com',
+        'id': profile.user.id,
+        'name': profile.user.first_name, 
+        'surname': profile.user.last_name,
+        'gsmNumber': profile.phone,
+        'email': profile.user.email,
         'identityNumber': '74300864791',
         'lastLoginDate': '2015-10-05 12:43:35',
         'registrationDate': '2013-04-21 15:12:09',
-        'registrationAddress': 'Nidakule Göztepe, Merdivenköy Mah. Bora Sok. No:1',
+        'registrationAddress': profile.address,
         'ip': '85.34.78.112',
-        'city': 'Istanbul',
-        'country': 'Turkey',
-        'zipCode': '34732'
+        'city': profile.city,
+        'country': profile.country,
+        'zipCode': zipcode
     }
 
     address={
-        'contactName': 'Jane Doe',
-        'city': 'Istanbul',
-        'country': 'Turkey',
-        'address': 'Nidakule Göztepe, Merdivenköy Mah. Bora Sok. No:1',
-        'zipCode': '34732'
+        'contactName': profile.user.first_name,
+        'city': profile.city,
+        'country': profile.country,
+        'address': profile.address,
+        'zipCode': zipcode
     }
 
     basket_items=[
@@ -95,7 +112,7 @@ def payment(request):
         'locale': 'tr',
         'conversationId': '123456789',
         'price': '1',
-        'paidPrice': '1.2',
+        'paidPrice': total,
         'currency': 'TRY',
         'basketId': 'B67832',
         'paymentGroup': 'PRODUCT',
@@ -164,6 +181,32 @@ def result(request):
     return HttpResponse(url)
 
 def success(request):
+    current_user = request.user
+    schopcart = ShopCart.objects.filter(id=id).delete()
+    request.session['cart_items'] = ShopCart.objects.filter(user_id=current_user.id).count()
+
+    order = Order(
+        user = request.user,
+        amount=0
+    )
+    order.save()
+
+    for item in schopcart:
+        order.shopcart.add(item)
+
+    order = Order(
+        user = request.user,
+        amount=0
+    )
+    order.save()
+    
+    for item in schopcart:
+        order.shopcart.add(item)
+
+    for item in schopcart:
+        item.delete() 
+    
+
     messages.success(request, 'Ödeme Başarılı')
     return redirect('completed')
     

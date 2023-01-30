@@ -13,7 +13,11 @@ from django.db.models import Q
 def index(request):
     current_user = request.user
     setting = Setting.objects.get(pk=1)
+
+    category2 = Category.objects.filter(parent=None)
     category = Category.objects.all()
+
+    
     category_list = Category.objects.all().order_by('-id')[:6]
     
     just_came = Product.objects.filter(id__range =(19,41))
@@ -24,11 +28,12 @@ def index(request):
 
     campaigns = Campaigns.objects.filter(id__range =(1,12))
     campaigns2 = Campaigns.objects.filter(id__range =(13,25))
+
     request.session['cart_items'] = ShopCart.objects.filter(user_id=current_user.id).count()
     request.session['favories_items'] = Favories.objects.filter(user_id=current_user.id).count()
     return render(request, 'index.html', context={
         'setting': setting,
-        'category': category,
+        'category2': category2,
         'category_list': category_list,
         'just_came': just_came,
         'trending_products': trending_products,
@@ -37,6 +42,7 @@ def index(request):
         'campaigns': campaigns,
         'campaigns2':campaigns2,
         'populer_products': populer_products,
+        'category': category,
         })
 
 

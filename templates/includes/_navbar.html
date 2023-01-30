@@ -15,15 +15,15 @@
                 {% for cat in category %}
                 <li class="navbar-nav w-100">
                     <div class="nav-item dropdown dropright">
-                        <a href="{% url 'category_products' cat.slug %}" title="{{cat.title}}" class="nav-link" {% if not node.is_leaf_node %} id="slideDown"aria-expanded="false" data-toggle="dropdown" {% endif %}>{{ cat.title }}  {% if not node.is_leaf_node %} <i class="fa fa-angle-right float-right mt-1 "></i> {% endif %} </a>
-                        <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
+                        <a href="{% url 'category_products' cat.slug %}" title="{{cat.title}}" class="nav-link"id="slideDown">{{ cat.title }}</a> <!-- aria-expanded="false" data-toggle="dropdown" -->
+                        <!-- <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
                             
-                            {% if not node.is_leaf_node %}
+                            
                             <ul class="children dropdown-item liste">
                                 <li><a href="{% url 'category_products' cat.slug %}" class="dropdown-item">{{ cat.title }}</a></li>
                             </ul>
-                        {% endif %}
-                        </div>
+                        
+                        </div> -->
                     </div>
                     </li>
                 {% endfor %}

@@ -55,6 +55,7 @@ class UserUpdateForm(UserChangeForm):
             field.widget.attrs.update({'class': 'form-control col-12'}),
 
 CITY = [
+    ('Bir Seçim Yapın', 'Bir Seçim Yapın'),
     ('Istanbul', 'Istanbul'),
     ('Ankara', 'Ankara'),
     ('Izmir', 'Izmir'),

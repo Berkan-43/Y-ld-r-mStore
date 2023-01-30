@@ -9,7 +9,7 @@ class ShopCart(models.Model): #ShopCart
     quantity = models.IntegerField()
 
     def __str__(self):
-        return self.user.username
+        return self.product.title
     @property
     def amount(self):
         return (self.quantity * self.product.discounted_price)
@@ -53,6 +53,9 @@ class Order(models.Model):
         ('Canceled', 'İptal Edildi')
     ]
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    shopcart = models.ManyToManyField(ShopCart, null=True)
+    amount = models.FloatField()
+    is_it_paid = models.BooleanField(default=False, verbose_name='Ödeme Durumu')
     code =models.CharField(max_length=5, editable=False)
     first_name = models.CharField(max_length=10) # name
     last_name = models.CharField(max_length=10)  # surname
@@ -75,9 +78,9 @@ class Order(models.Model):
         return self.first_name
 
     class Meta:
-        db_table = 'Siparişler'
-        verbose_name_plural = 'Siparişler'
-        verbose_name = 'Sipariş'
+        db_table = 'Siparişler-Ödemeler'
+        verbose_name_plural = 'Siparişler-Ödemeler'
+        verbose_name = 'Sipariş-Ödeme'
 
 class OderProduct(models.Model): 
     STATUS = [
@@ -97,3 +100,5 @@ class OderProduct(models.Model):
 
     def __str__(self):
         return self.product.title
+    
+
